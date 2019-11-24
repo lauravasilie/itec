@@ -1,10 +1,10 @@
-// const router = require("express").Router()
+const router = require("express").Router()
 
-// const productService = require("../services/ProductService")
+const productService = require("../services/ProductService")
 
-// router.get("/product", productService.getProducts)
-// router.post("/product", productService.createProduct)
-// router.put("/product", productService.updateProduct)
-// router.delete("/product", productService.deleteProduct)
+router.get("/products", productService.getProducts)
+router.post("/products", productService.addProduct)
+router.put("/products", productService.updateProduct)
+router.delete("/products", productService.deleteProduct)
 
-// module.exports = router
+module.exports = router
