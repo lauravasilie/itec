@@ -13,6 +13,7 @@ const User = new Schema ({
         company: { type: Boolean, required: true },
         isBuyer: { type: Boolean, required: true },
         password: { type: String, required: true },
+        description: { type: String },
         photo: { type: String }
 });
 
