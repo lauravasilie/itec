@@ -100,7 +100,7 @@ const UserService = {
             users = await User.find({}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec();
           res.json(users.map(function(user) { 
             return { 
-              id: user.id,
+              _id: user._id,
               name: user.name,
               phone: user.phone,
               email: user.email,              
