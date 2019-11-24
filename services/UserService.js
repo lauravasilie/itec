@@ -3,6 +3,15 @@ const crypto = require('crypto')
 const bcrypt = require('bcrypt')
 const User = require("../models/User")
 const Session = require("../models/Session")
+var nodemailer = require('nodemailer');
+
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'librarie.voluntariat@gmail.com',
+//     pass: 'meteowrite'
+//   }
+// });
 
 const UserService = {
     login: async (req, res) => {
@@ -162,6 +171,32 @@ const UserService = {
         }
         else {
           newUser.save()
+          
+          // if(newUser.isBuyer) {
+          //   var mailOptions = {
+          //     from: 'itroc@gmail.com',
+          //     to: newUser.email,
+          //     subject: 'Welcome to iTROC!',
+          //     text: 'We are glad you want to help local community by buying products from local people!'
+          //   };
+          // }
+          // else {
+          //   var mailOptions = {
+          //     from: 'itroc@gmail.com',
+          //     to: newUser.email,
+          //     subject: 'Welcome to iTROC!',
+          //     text: 'We believe this portal is great for local development and we hope this will help you in selling your goods much easier!'
+          //   };
+          // }
+          
+          // transporter.sendMail(mailOptions, function(error, info){
+          //   if (error) {
+          //     console.log(error);
+          //   } else {
+          //     console.log('Email sent: ' + info.response);
+          //   }
+          // });
+
           res.status(201).json(newUser)
         }
       } catch(e) {

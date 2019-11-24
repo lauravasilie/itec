@@ -14,16 +14,20 @@ const ProductService = {
                 const size = req.query.size
                 const category = req.query.category
                 const subcategory = req.query.subcategory
-                // const min = req.query.min
-                // const max = req.query.max
+                const min = req.query.min
+                const max = req.query.max
 
                 var products
-                if(category && subcategory)
-                    products = await Product.find({category: category, subcategory: subcategory}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
-                else if(category)
+                if (category && subcategory && min && max)
+                    products = await Product.find({category: category, subcategory: subcategory, price: {$gte: min, $lte: max}}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
+                else if (category && min && max)
+                    products = await Product.find({category: category, price: {$gte: min, $lte: max}}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
+                else if (min && max)
+                    products = await Product.find({price: {$gte: min, $lte: max}}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
+                else if (category)
                     products = await Product.find({category: category}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
-                else
-                    products = await Product.find({}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
+                else 
+                    products = await Product.find().skip(parseInt(size * page)).limit(parseInt(size)).lean().exec()
                 res.status(200).json(products)
             }
         } catch (err) {

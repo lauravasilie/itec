@@ -36,17 +36,8 @@ router.use(require(__dirname + "/controllers/UserController"));
 router.use(require(__dirname + "/controllers/ProductController"));
 router.use(require(__dirname + "/controllers/CategoryController"));
 router.use(require(__dirname + "/controllers/OrderController"));
+// router.use(require(__dirname + "/controllers/PaymentController"));
 
 app.use('/api', router);
-
-// app.use(session({
-//     key: 'id',
-//     secret: 'somerandonstuffs',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         expires: 600000
-//     }
-// }));
 
 module.exports = app;
