@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const Order = new Schema ({
     products: [{
         product_id: { type: String, required: true },
-        buyer_id: { type: String, required: true },
+        seller_id: { type: String, required: true },
         quantity: { type: String, required: true },
         price: { type: Number, required: true },
     }],
+    buyer_id: { type: String, required: true },
     totalPrice: { type: Number, required: true },
     time: { type: Number, required: true }
 });

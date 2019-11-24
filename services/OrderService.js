@@ -27,6 +27,9 @@ const OrderService = {
                 res.status(401).json("Session token is not valid");            }
             else {
                 const order = new Order(req.body)
+                const products = req.body.map(function(product) {
+                    product.quantity
+                })
                 await order.save()
                 res.status(201).json(order)
             }

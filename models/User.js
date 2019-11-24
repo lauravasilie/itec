@@ -13,6 +13,7 @@ const User = new Schema ({
         company: { type: Boolean, required: true },
         isBuyer: { type: Boolean, required: true },
         password: { type: String, required: true },
+        photo: { type: String, required: true }
 });
 
 User.pre('save', async function(next){

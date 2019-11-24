@@ -20,7 +20,7 @@ const UserService = {
               res.status(401).send("User already logged in")
             else {
               const token = crypto.randomBytes(64).toString('hex');
-              const session = Session.create({
+              Session.create({
                 token: token,
                 user_id: user.id
               })
@@ -82,7 +82,13 @@ const UserService = {
         else {
           const page = req.query.page;
           const size = req.query.size;
-          const users = await User.find({}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec();
+          const name = req.query.name
+
+          var users
+          if(name)
+            users = await User.find({ name: { $regex: name , $options: "$i"}}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec();
+          else
+            users = await User.find({}).skip(parseInt(size * page)).limit(parseInt(size)).lean().exec();
           res.json(users.map(function(user) { 
             return { 
               id: user.id,

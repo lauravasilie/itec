@@ -16,7 +16,7 @@ const CategoryService = {
             category.save()
             res.status(201).json(category)
         } catch (e) {
-            res.status(400).send({e}) 
+            res.status(400).send({e})
         }
     }
 }

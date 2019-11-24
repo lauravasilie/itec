@@ -42,7 +42,7 @@ const ProductService = {
                 await product.save()
                 res.status(201).json(product)
             } 
-        }catch(e) {
+        } catch(e) {
             res.status(400).send(e)
         }
     },
@@ -67,10 +67,10 @@ const ProductService = {
             const token = req.headers['auth-token'];
             let session = await Session.findOne({token}).lean().exec();
             if (!session) {
-              res.status(401).json("Session token is not valid");
+                res.status(401).json("Session token is not valid");
             } 
             else {
-                const result = await Product.findByIdAndDelete(req.body.id)
+                const result = await Product.findByIdAndDelete(req.params.id)
                 res.status(200).send({ result })
             }
         } catch(err) {
